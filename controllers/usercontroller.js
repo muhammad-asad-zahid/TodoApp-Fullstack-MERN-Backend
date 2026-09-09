@@ -12,6 +12,7 @@ const COOKIE_OPTIONS = {
 };
 
 const userSignup = async (req, res) => {
+  console.log('hello from signup')
   try {
     const { email, username, password } = req.body || {};
 
@@ -43,8 +44,9 @@ const userSignup = async (req, res) => {
 
     // Set cookie so Next.js Middleware can read it automatically
     res.cookie("auth_token", token, COOKIE_OPTIONS);
-
+    console.log(newUser)
     return res.status(201).json({
+
       message: "User registered successfully",
       user: {
         id: newUser._id,
