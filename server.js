@@ -36,10 +36,17 @@ app.use('/user', userRoutes)
 app.use('/todo',todoRoutes )
 
 app.get('/', (req, res) => {
-      console.log(req.body);
-  res.send('Hello, World!');
+  console.log(req.body);
 
-  
+  // Return a proper JSON response with an HTTP status code
+  res.status(200).json({
+    success: true,
+    message: 'Request received successfully',
+    data: {
+      receivedBody: req.body || null,
+      timestamp: new Date().toISOString()
+    }
+  });
 });
 
 app.listen(PORT, () => {
